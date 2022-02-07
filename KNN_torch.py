@@ -3,6 +3,7 @@ from torch.utils.data import DataLoader
 import torchvision.datasets as dsets
 import numpy as np
 import torchvision.transforms as transforms
+
 batch_size=100
 def getXmean(x_train):
     x_train = np.reshape(x_train, (x_train.shape[0], -1))  # Turn the image to 1-D

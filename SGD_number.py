@@ -119,6 +119,7 @@ for i in range(epoch):
         loss = network.loss(x_batch, y_batch)
         if i % 100 == 0:
             print(loss)
+
     print(network.accuracy(x_test, y_test))
 
 
