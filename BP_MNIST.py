@@ -18,6 +18,25 @@ class Relu:
         dx[self.x<=0]=0
         return dx
 
+class _sigmoid:
+    def __int__(self):
+        self.out=None
+
+    def forward(self,x):
+        out=1/(1+np.exp(-x))
+        self.out=out
+        return out
+
+    def backward(self,dout):
+        dx=dout*self.out*(1-self.out)
+        return dx
+
+class Affine:
+    def __int__(self,W,b):
+        self.W=W
+        self.b=b
+        self.x=x
+
 class TwoLayerNet:
     def __init__(self,input_size,hidden_size,output_size,weight_init_std=0.01):
         #初始化权重
