@@ -35,7 +35,7 @@ class Affine:
     def __int__(self,W,b):
         self.W=W
         self.b=b
-        self.x=x
+        self.x=None
 
 class TwoLayerNet:
     def __init__(self,input_size,hidden_size,output_size,weight_init_std=0.01):
