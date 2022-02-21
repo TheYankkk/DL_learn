@@ -37,6 +37,10 @@ class Affine:
         self.b=b
         self.x=None
 
+class SoftmaxWithLoss:
+    def __int__(self):
+
+
 class TwoLayerNet:
     def __init__(self,input_size,hidden_size,output_size,weight_init_std=0.01):
         #初始化权重
@@ -48,4 +52,10 @@ class TwoLayerNet:
 
         #生成层
         self.layers=OrderedDict()
-        self.layers['Affine1']=
+        self.layers['Affine1']=Affine(self.params['W1'],self.params['b1'])
+        self.layers['Relu1']=Relu()
+        self.layers['Affine2'] = Affine(self.params['W2'], self.params['b2'])
+        self.layers['Relu2'] = Relu()
+        self.lastLayer=SoftmaxWithLoss()
+
+
