@@ -62,6 +62,13 @@ class SoftmaxWithLoss:
         self.y=y
         self.p=_softmax(x)
         self.loss=cross_entropy_error(self.p,self.y)
+        return self.loss
+
+    def backward(self,dout=1):
+        batch_size=self.y.shape[0]
+        dx=(self.p-self.y)/batch_size
+
+        return dx
 
 
 class TwoLayerNet:
@@ -81,4 +88,16 @@ class TwoLayerNet:
         self.layers['Relu2'] = Relu()
         self.lastLayer=SoftmaxWithLoss()
 
+    def predict(self,x):
+        for layer in self.layers.values():
+            x=layer.forward(x)
+        return  x
+
+    def loss(self,x,y):
+        p=self.predict(x)
+        return self.lastLayer.forward(p,y)
+
+    def accuracy(self,x,y):
+        p=self.predict(x)
+        p=np.argmax(y,axis=1)
 
