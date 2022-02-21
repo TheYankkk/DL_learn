@@ -37,8 +37,31 @@ class Affine:
         self.b=b
         self.x=None
 
+def _softmax(x):
+    if x.ndim==2:
+        c=np.max(x,axis=1)
+        x=x.T-c
+        y=np.exp(x)/np.sum(np.exp(x),axis=0)
+        return y.T
+    c=np.max(x)
+    exp_x=np.exp(x-c)
+    return exp_x/np.sum(exp_x)
+
+def cross_entropy_error(p,y):
+    delta=1e-7
+    batch_size=p.shape[0]
+    return -np.sum(y*np.log(p+delta))/batch_size
+
 class SoftmaxWithLoss:
     def __int__(self):
+        self.loss=None
+        self.p=None#output of softmax
+        self.y=None#one hot vector
+
+    def forward(self,x,y):
+        self.y=y
+        self.p=_softmax(x)
+        self.loss=cross_entropy_error(self.p,self.y)
 
 
 class TwoLayerNet:
