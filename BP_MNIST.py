@@ -81,6 +81,7 @@ class TwoLayerNet:
         self.params['b2'] = np.zeros(output_size)
 
 
+
         #生成层
         self.layers=OrderedDict()
         self.layers['Affine1']=Affine(self.params['W1'],self.params['b1'])
