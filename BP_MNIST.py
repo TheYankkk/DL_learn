@@ -82,7 +82,6 @@ class TwoLayerNet:
 
 
 
-
         #生成层
         self.layers=OrderedDict()
         self.layers['Affine1']=Affine(self.params['W1'],self.params['b1'])
